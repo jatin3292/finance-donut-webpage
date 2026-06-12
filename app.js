@@ -98,7 +98,11 @@
     sheetUrlInput.disabled = true;
     loadUrlBtn.textContent = "Loading...";
 
-    fetch(exportUrl, { cache: "no-store" })
+    // Append a unique timestamp to bypass both browser and Google CDN caching
+    const cacheBusterUrl =
+      exportUrl + (exportUrl.includes("?") ? "&" : "?") + "_cb=" + Date.now();
+
+    fetch(cacheBusterUrl, { cache: "no-store" })
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -411,5 +415,16 @@
   } else if (DEFAULT_SHEET_URL) {
     sheetUrlInput.value = DEFAULT_SHEET_URL;
     loadFromGoogleSheet(DEFAULT_SHEET_URL);
+
+    // Auto-fetch fresh data every 5 minutes to keep the chart updated
+    setInterval(
+      () => {
+        // Only auto-fetch if the user is still viewing the default sheet
+        if (sheetUrlInput.value === DEFAULT_SHEET_URL) {
+          loadFromGoogleSheet(DEFAULT_SHEET_URL);
+        }
+      },
+      5 * 60 * 1000,
+    );
   }
 })();
