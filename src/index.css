@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+:root {
+  --brand-bg: #f6f7fb;
+  --brand-card: #ffffff;
+  --brand-text: #1f2430;
+  --brand-muted: #6b7280;
+  --brand-border: #e5e7eb;
+  --brand-accent: #4e79a7;
+  --brand-accent-hover: #3b618a;
+  --brand-danger: #dc2626;
+
+  --font-sans: -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+}
+
+.dark {
+  --brand-bg: #0f172a;      /* Slate 900 */
+  --brand-card: #1e293b;    /* Slate 800 */
+  --brand-text: #f8fafc;    /* Slate 50 */
+  --brand-muted: #94a3b8;    /* Slate 400 */
+  --brand-border: #334155;  /* Slate 700 */
+  --brand-accent: #60a5fa;  /* Blue 400 */
+  --brand-accent-hover: #3b82f6; /* Blue 500 */
+  --brand-danger: #ef4444;  /* Red 500 */
+}
+
+@theme {
+  --color-brand-bg: var(--brand-bg);
+  --color-brand-card: var(--brand-card);
+  --color-brand-text: var(--brand-text);
+  --color-brand-muted: var(--brand-muted);
+  --color-brand-border: var(--brand-border);
+  --color-brand-accent: var(--brand-accent);
+  --color-brand-accent-hover: var(--brand-accent-hover);
+  --color-brand-danger: var(--brand-danger);
+
+  --font-sans: var(--font-sans);
+}
+
+body {
+  background-color: var(--color-brand-bg);
+  color: var(--color-brand-text);
+  font-family: var(--font-sans);
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  padding: 16px 16px;
+}
+
+#root {
+  width: 100%;
+}
+
+body, .bg-brand-card, .text-brand-text, .text-brand-muted, .border-brand-border, button, input, select {
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+
+@keyframes hoverSwing {
+  0% {
+    transform: translateY(-4px) rotate(-1.2deg) scale(1.01);
+  }
+  100% {
+    transform: translateY(-4px) rotate(1.2deg) scale(1.01);
+  }
+}
+
+.hover-swing {
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.hover-swing:hover {
+  animation: hoverSwing 1.6s ease-in-out infinite alternate;
+}
+
+

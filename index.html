@@ -2,134 +2,34 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>Finance Donut Chart</title>
-    <meta
-      name="description"
-      content="An interactive finance donut chart to visualize monthly income, expenses, savings rate, and cumulative insights from Excel or Google Sheets."
-    />
-    <link rel="stylesheet" href="style.css" />
+    <meta name="description" content="An interactive finance donut chart to visualize monthly income, expenses, savings rate, and cumulative insights from Excel or Google Sheets." />
+
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#0f172a" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Finance Donut" />
+    <link rel="apple-touch-icon" href="icon-192.png" />
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="icon-192.png" />
   </head>
   <body>
-    <div class="container">
-      <header>
-        <h1>Finance Donut Chart</h1>
-        <p class="subtitle">
-          Upload your Finance.xlsx or link a Google Sheet to see monthly
-          expenses broken down by category.
-        </p>
-      </header>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
 
-      <main>
-        <section class="card" aria-labelledby="upload-section-title">
-          <h2 id="upload-section-title" class="hidden">Upload source data</h2>
-          <div
-            class="dropzone"
-            id="dropzone"
-            role="button"
-            tabindex="0"
-            aria-label="Upload Excel sheet"
-          >
-            <strong>Click to upload</strong> or drag &amp; drop your
-            <code>.xlsx</code> file here
-            <div class="hint">
-              Nothing is uploaded anywhere — everything runs locally in your
-              browser.
-            </div>
-            <input
-              type="file"
-              id="fileInput"
-              accept=".xlsx,.xls"
-              aria-label="Upload Excel File"
-            />
-          </div>
-          <div class="divider">OR</div>
-          <div class="url-input-wrap">
-            <input
-              type="text"
-              id="sheetUrlInput"
-              placeholder="Paste Google Sheets URL (Shared / Published to web)"
-              aria-label="Google Sheets URL"
-            />
-            <button id="loadUrlBtn" class="btn btn-secondary">
-              Load Sheet
-            </button>
-          </div>
-          <div id="status"></div>
-        </section>
-
-        <section
-          class="card hidden"
-          id="resultCard"
-          aria-labelledby="insights-section-title"
-        >
-          <h2 id="insights-section-title" class="hidden">
-            Insights and Charts
-          </h2>
-          <div class="controls">
-            <select id="monthSelect" aria-label="Select month"></select>
-            <button id="savingsBtn" class="btn">View Savings Insights</button>
-          </div>
-          <div class="stats">
-            <div class="stat">
-              <div class="label">Income</div>
-              <div class="value" id="incomeVal">—</div>
-            </div>
-            <div class="stat">
-              <div class="label">Total Expense</div>
-              <div class="value" id="expenseVal">—</div>
-            </div>
-            <div class="stat">
-              <div class="label">Net</div>
-              <div class="value" id="netVal">—</div>
-            </div>
-          </div>
-
-          <div id="savingsPanel" class="savings-panel hidden">
-            <div class="panel-header">
-              <h3>Savings Insights</h3>
-              <button
-                id="closePanelBtn"
-                class="close-btn"
-                aria-label="Close panel"
-              >
-                &times;
-              </button>
-            </div>
-            <div class="panel-grid">
-              <div class="panel-stat">
-                <span class="panel-label">Monthly Savings</span>
-                <span id="monthlySavingsVal" class="panel-value">—</span>
-              </div>
-              <div class="panel-stat">
-                <span class="panel-label">Savings Rate</span>
-                <span id="savingsRateVal" class="panel-value">—</span>
-                <div class="progress-bar-container">
-                  <div id="savingsRateProgress" class="progress-bar"></div>
-                </div>
-              </div>
-              <div class="panel-stat">
-                <span class="panel-label">Total Cumulative Savings</span>
-                <span id="cumulativeSavingsVal" class="panel-value">—</span>
-              </div>
-            </div>
-            <div id="savingsMessage" class="savings-message"></div>
-          </div>
-
-          <div class="chart-wrap">
-            <canvas
-              id="donut"
-              aria-label="Expenses pie chart"
-              role="img"
-            ></canvas>
-            <div id="legend"></div>
-          </div>
-        </section>
-      </main>
-    </div>
-
-    <script src="libs/xlsx.full.min.js"></script>
-    <script src="libs/chart.js"></script>
-    <script src="app.js"></script>
+    <!-- Register Service Worker -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('sw.js').catch(() => {});
+        });
+      }
+    </script>
   </body>
 </html>

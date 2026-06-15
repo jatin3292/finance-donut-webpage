@@ -1,0 +1,25 @@
+{
+  "name": "Finance Donut Chart",
+  "short_name": "Finance Donut",
+  "description": "Interactive finance dashboard with donut charts to visualize monthly income, expenses, savings, salary history, and dues.",
+  "start_url": "/finance-donut-webpage/",
+  "scope": "/finance-donut-webpage/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#0f172a",
+  "background_color": "#0f172a",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
