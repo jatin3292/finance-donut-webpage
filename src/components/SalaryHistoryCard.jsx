@@ -355,40 +355,40 @@ export default function SalaryHistoryCard({ salaryData, formatCurrency, onEditSa
       </div>
 
       {/* 3-Tile Stats Row: Peak Salary, CAGR, YoY */}
-      <div className="grid grid-cols-3 gap-2.5 mb-3">
+      <div className="grid grid-cols-3 gap-1.5 sm:gap-2.5 mb-3">
         {/* Peak Salary */}
-        <div className="flex flex-col items-center gap-0.5 bg-brand-bg px-3 py-3.5 rounded-xl border border-brand-border/60 text-center">
-          <span className="text-[10px] font-semibold text-brand-muted uppercase tracking-wider">
+        <div className="flex flex-col items-center gap-0.5 bg-brand-bg px-1.5 py-2 sm:px-3 sm:py-3.5 rounded-xl border border-brand-border/60 text-center">
+          <span className="text-[8px] sm:text-[10px] font-semibold text-brand-muted uppercase tracking-wider">
             Peak Salary
           </span>
-          <span className="text-lg font-extrabold text-[#10b981] leading-tight">
+          <span className="text-xs sm:text-base md:text-lg font-extrabold text-[#10b981] leading-tight">
             {formatCurrency(peakSalary)}
           </span>
-          <span className="text-[9px] text-brand-muted">
+          <span className="text-[7.5px] sm:text-[9px] text-brand-muted leading-tight">
             Max historical rate
           </span>
         </div>
 
         {/* CAGR */}
-        <div className="flex flex-col items-center gap-0.5 bg-brand-bg px-3 py-3.5 rounded-xl border border-[#6366f1]/25 text-center">
-          <span className="text-[10px] font-semibold text-brand-muted uppercase tracking-wider">
+        <div className="flex flex-col items-center gap-0.5 bg-brand-bg px-1.5 py-2 sm:px-3 sm:py-3.5 rounded-xl border border-[#6366f1]/25 text-center">
+          <span className="text-[8px] sm:text-[10px] font-semibold text-brand-muted uppercase tracking-wider">
             CAGR
           </span>
-          <span className="text-lg font-extrabold text-[#6366f1] leading-tight">
+          <span className="text-xs sm:text-base md:text-lg font-extrabold text-[#6366f1] leading-tight">
             {cagr !== null ? `${cagr >= 0 ? "+" : ""}${cagr.toFixed(1)}%` : "—"}
           </span>
-          <span className="text-[9px] text-brand-muted">
+          <span className="text-[7.5px] sm:text-[9px] text-brand-muted leading-tight">
             Compound annual growth
           </span>
         </div>
 
         {/* YoY Change */}
-        <div className="flex flex-col items-center gap-0.5 bg-brand-bg px-3 py-3.5 rounded-xl border border-brand-border/60 text-center">
-          <span className="text-[10px] font-semibold text-brand-muted uppercase tracking-wider">
+        <div className="flex flex-col items-center gap-0.5 bg-brand-bg px-1.5 py-2 sm:px-3 sm:py-3.5 rounded-xl border border-brand-border/60 text-center">
+          <span className="text-[8px] sm:text-[10px] font-semibold text-brand-muted uppercase tracking-wider">
             YoY Change
           </span>
           <span
-            className={`text-lg font-extrabold leading-tight inline-flex items-center gap-0.5 ${
+            className={`text-xs sm:text-base md:text-lg font-extrabold leading-tight inline-flex items-center gap-0.5 ${
               yoy === null
                 ? "text-brand-muted"
                 : yoy >= 0
@@ -405,7 +405,7 @@ export default function SalaryHistoryCard({ salaryData, formatCurrency, onEditSa
               "—"
             )}
           </span>
-          <span className="text-[9px] text-brand-muted">
+          <span className="text-[7.5px] sm:text-[9px] text-brand-muted leading-tight">
             Latest year-over-year
           </span>
         </div>

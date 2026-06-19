@@ -79,7 +79,7 @@ export default function FinancialOverviewBar({
         <div
           id="tile-net-balance"
           className={`
-            relative col-span-2 sm:col-span-1 rounded-xl border p-3.5 overflow-hidden
+            relative rounded-xl border p-3.5 overflow-hidden
             bg-brand-card hover-swing
             ${isPositive
               ? 'border-emerald-500/40 shadow-[0_0_18px_0_rgba(16,185,129,0.12)] hover:border-emerald-500/80 hover:shadow-[0_8px_24px_rgba(16,185,129,0.25)]'

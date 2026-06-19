@@ -279,7 +279,7 @@ export default function App() {
 
   return (
     <div 
-      className="w-full max-w-[80%] px-4 mx-auto"
+      className="w-full md:max-w-[80%] px-2 sm:px-4 mx-auto"
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
@@ -371,7 +371,18 @@ export default function App() {
                 {carouselIndex === 0 ? (
                   /* Card 1: Monthly Expenses Details */
                   <section className="bg-brand-card border border-brand-border rounded-[14px] p-5 mb-3" id="resultCard">
-                    <div className="flex gap-3 items-center mb-4">
+                    <div className="flex gap-2.5 items-center mb-4">
+                      <button 
+                        onClick={() => setSelectedMonthIndex(prev => Math.max(0, prev - 1))}
+                        disabled={selectedMonthIndex <= 0}
+                        className="p-2.5 rounded-lg border border-brand-border bg-brand-card text-brand-text hover:bg-brand-bg hover:text-brand-accent disabled:opacity-20 disabled:cursor-not-allowed cursor-pointer transition-all active:scale-95 shadow-xs shrink-0 flex items-center justify-center"
+                        aria-label="Previous Month"
+                      >
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
+                        </svg>
+                      </button>
+
                       <select 
                         id="monthSelect" 
                         value={selectedMonthIndex} 
@@ -385,6 +396,17 @@ export default function App() {
                           </option>
                         ))}
                       </select>
+
+                      <button 
+                        onClick={() => setSelectedMonthIndex(prev => Math.min(monthsData.length - 1, prev + 1))}
+                        disabled={selectedMonthIndex >= monthsData.length - 1}
+                        className="p-2.5 rounded-lg border border-brand-border bg-brand-card text-brand-text hover:bg-brand-bg hover:text-brand-accent disabled:opacity-20 disabled:cursor-not-allowed cursor-pointer transition-all active:scale-95 shadow-xs shrink-0 flex items-center justify-center"
+                        aria-label="Next Month"
+                      >
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </button>
                     </div>
 
                     <StatsGrid 
@@ -394,36 +416,12 @@ export default function App() {
                       formatCurrency={formatCurrency}
                     />
 
-                    <div className="flex items-center gap-6 mt-6">
-                      <button 
-                        onClick={() => setSelectedMonthIndex(prev => Math.max(0, prev - 1))}
-                        disabled={selectedMonthIndex <= 0}
-                        className="p-3 rounded-full border border-brand-border bg-brand-card text-brand-text hover:bg-brand-bg hover:text-brand-accent disabled:opacity-20 disabled:cursor-not-allowed cursor-pointer transition-all active:scale-95 shadow-xs shrink-0"
-                        aria-label="Previous Month"
-                      >
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
-                        </svg>
-                      </button>
-                      
-                      <div className="flex-1 min-w-0">
-                        <DonutChart 
-                          categories={selectedMonth.categories} 
-                          formatCurrency={formatCurrency} 
-                          editable={false}
-                        />
-                      </div>
-
-                      <button 
-                        onClick={() => setSelectedMonthIndex(prev => Math.min(monthsData.length - 1, prev + 1))}
-                        disabled={selectedMonthIndex >= monthsData.length - 1}
-                        className="p-3 rounded-full border border-brand-border bg-brand-card text-brand-text hover:bg-brand-bg hover:text-brand-accent disabled:opacity-20 disabled:cursor-not-allowed cursor-pointer transition-all active:scale-95 shadow-xs shrink-0"
-                        aria-label="Next Month"
-                      >
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-                        </svg>
-                      </button>
+                    <div className="mt-4">
+                      <DonutChart 
+                        categories={selectedMonth.categories} 
+                        formatCurrency={formatCurrency} 
+                        editable={false}
+                      />
                     </div>
                   </section>
                 ) : carouselIndex === 1 ? (
